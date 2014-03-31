@@ -1,0 +1,39 @@
+<dl>
+  <dt>Realex Merchant ID</dt>
+  <dd><%= ENV['REALEX_MERCHANT_ID'] %></dd>
+  <dt>Realex Shared Secret</dt>
+  <dd><%= ENV['REALEX_SHARED_SECRET'] %>
+  <dt>Realex Account</dt>
+  <dd><%= ENV['REALEX_ACCOUNT'] %>
+  <dt>Active Merchant Mode</dt>
+  <dd>
+    <%= ActiveMerchant::Billing::Base.mode  %>
+  </dd>
+</dl>
+
+<% payment_service_for '1234', ENV['REALEX_MERCHANT_ID'], credential2: ENV['REALEX_SHARED_SECRET'], credential3: ENV['REALEX_ACCOUNT'],
+        :amount => 1000, :currency => 'EUR',
+        :service => :realex_hpp do |service|
+
+    service.customer :first_name => 'Paul',
+        :last_name => 'Campbell',
+        :phone => '123456',
+        :email => 'paul@rslw.com'
+    service.billing_address :city => 'Dublin',
+        :address1 => '1 Main Street',
+        :state => 'CA',
+        :country => 'USA',
+        :zip => '90210'
+    service.item_name "Shiny Thing"
+    service.invoice '12345'
+    service.tax '0.00'
+
+    service.notify_url url_for(:only_path => false)
+    service.return_url url_for(:only_path => false)
+    service.cancel_return_url url_for(:only_path => false) 
+    %>
+
+    <!-- display payment summary here -->
+
+    <%= submit_tag 'Make Payment' %>
+<% end %>

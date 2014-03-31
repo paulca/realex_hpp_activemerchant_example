@@ -1,0 +1,3 @@
+export REALEX_MERCHANT_ID=sample
+export REALEX_SHARED_SECRET=sample
+export REALEX_ACCOUNT=sample
