@@ -26,7 +26,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'activemerchant', git: 'https://github.com/paulca/active_merchant.git'
+gem 'activemerchant', git: 'https://github.com/paulca/active_merchant.git', branch: 'realex_hpp'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
